@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Environment variables (nunca dejar secrets en git)
+.env
+.env.*
+
+# Build output de los proyectos
+frontend/.next/
+backend/node_modules/
+
+# Logs y archivos del sistema
+*.log
+.DS_Store
+Thumbs.db
