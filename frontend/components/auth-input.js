@@ -20,10 +20,11 @@ export function InputField({ label, type, icon: Icon, value, onChange, placehold
 
   return (
     createElement('div', { className: 'input-group' }, [
-      createElement('label', { className: 'input-label', htmlFor: label.toLowerCase() }, label),
-      createElement('div', { className: 'input-wrap' }, [
-        createElement(Icon, { className: 'icon' }),
+      createElement('label', { key: 'label', className: 'input-label', htmlFor: label.toLowerCase() }, label),
+      createElement('div', { key: 'wrap', className: 'input-wrap' }, [
+        createElement(Icon, { key: 'icon', className: 'icon' }),
         createElement('input', {
+          key: 'input',
           className: 'input-field',
           type: inputType,
           value: value,
@@ -35,6 +36,7 @@ export function InputField({ label, type, icon: Icon, value, onChange, placehold
         type === 'password' && createElement(
           'button',
           {
+            key: 'toggle',
             type: 'button',
             className: 'toggle-btn',
             onClick: () => setShowPassword((v) => !v),

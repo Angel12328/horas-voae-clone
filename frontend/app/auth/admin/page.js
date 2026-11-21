@@ -25,14 +25,15 @@ export default function AdminLoginPage() {
 
   return (
     createElement('main', { className: 'app' }, [
-      createElement('div', { className: 'card' }, [
-        createElement('div', { className: 'branding' }, [
-          createElement('h1', { className: 'logo' }, 'Artículo 140'),
-          createElement('p', { className: 'subtitle' }, 'Ingrese como Empleado'),
-          createElement('p', { className: 'helper' }, 'Ingrese sus datos para acceder a la plataforma.'),
+      createElement('div', { className: 'card', key: 'card' }, [
+        createElement('div', { className: 'branding', key: 'branding' }, [
+          createElement('h1', { className: 'logo', key: 'title' }, 'Artículo 140'),
+          createElement('p', { className: 'subtitle', key: 'subtitle' }, 'Ingrese como Empleado'),
+          createElement('p', { className: 'helper', key: 'helper' }, 'Ingrese sus datos para acceder a la plataforma.'),
         ]),
-        createElement('form', { onSubmit: handleSubmit, noValidate: true }, [
+        createElement('form', { onSubmit: handleSubmit, noValidate: true, key: 'form' }, [
           createElement(InputField, {
+            key: 'correo',
             label: 'Correo Institucional',
             type: 'text',
             icon: EnvelopeIcon,
@@ -41,6 +42,7 @@ export default function AdminLoginPage() {
             placeholder: 'correo@institucion.edu',
           }),
           createElement(InputField, {
+            key: 'contrasenia',
             label: 'Contraseña',
             type: 'password',
             icon: LockIcon,
@@ -50,7 +52,7 @@ export default function AdminLoginPage() {
           }),
           createElement(
             'p',
-            { style: { margin: '0 0 10px' } },
+            { key: 'forgot', style: { margin: '0 0 10px' } },
             createElement(
               'a',
               { href: '#', className: 'link' },
@@ -58,15 +60,15 @@ export default function AdminLoginPage() {
             )
           ),
           (error) &&
-            createElement('p', { style: { color: '#b91c1c', margin: '0 0 10px', textAlign: 'left' } }, error),
+            createElement('p', { key: 'error', style: { color: '#b91c1c', margin: '0 0 10px', textAlign: 'left' } }, error),
           createElement(
             'button',
-            { type: 'submit', className: 'btn btn-primary', disabled: submitting },
+            { key: 'submit', type: 'submit', className: 'btn btn-primary', disabled: submitting },
             submitting ? 'Conectando...' : 'Iniciar Sesión'
           ),
           createElement(
             Link,
-            { href: '/auth/login', className: 'btn btn-link' },
+            { key: 'login-link', href: '/auth/login', className: 'btn btn-link' },
             '¿Es estudiante? Ingrese aquí'
           ),
         ]),

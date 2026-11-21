@@ -19,27 +19,27 @@ export default function Home() {
 
   return (
     createElement('main', { className: 'app' }, [
-      createElement('div', { className: 'card' }, [
-        createElement('div', { className: 'branding' }, [
-          createElement('h1', { className: 'logo' }, 'Artículo 140'),
-          createElement('p', { className: 'subtitle' }, '¿Eres empleado(a)?'),
-          createElement('p', { className: 'helper' }, 'Elige el método de acceso para continuar.'),
+      createElement('div', { className: 'card', key: 'card' }, [
+        createElement('div', { className: 'branding', key: 'branding' }, [
+          createElement('h1', { className: 'logo', key: 'title' }, 'Artículo 140'),
+          createElement('p', { className: 'subtitle', key: 'subtitle' }, '¿Eres empleado(a)?'),
+          createElement('p', { className: 'helper', key: 'helper' }, 'Elige el método de acceso para continuar.'),
         ]),
-        createElement('div', { className: 'actions' }, [
+        createElement('div', { className: 'actions', key: 'actions' }, [
           createElement(
             'button',
-            { type: 'button', className: 'btn btn-primary', onClick: startStudent },
+            { key: 'student', type: 'button', className: 'btn btn-primary', onClick: startStudent },
             'Iniciar sesión como estudiante'
           ),
           createElement(
             'button',
-            { type: 'button', className: 'btn btn-secondary', onClick: startEmployee },
+            { key: 'employee', type: 'button', className: 'btn btn-secondary', onClick: startEmployee },
             'Iniciar sesión como empleado'
           ),
         ]),
         createElement(
           'p',
-          { style: { color: '#b91c1c', marginTop: 10, textAlign: 'center' } },
+          { key: 'message', style: { color: '#b91c1c', marginTop: 10, textAlign: 'center' } },
           message
         ),
       ]),
