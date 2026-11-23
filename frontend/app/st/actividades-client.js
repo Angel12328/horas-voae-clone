@@ -95,9 +95,38 @@ export default function ActividadesClient() {
             className: 'activities-grid',
             key: 'grid',
           }, [
-            createElement('p', { key: 'placeholder' },
-              'Aquí aparecerá la actividad disponible.'
-            ),
+            createElement('article', {
+  className: 'activity-card',
+  key: 'torneo-ajedrez',
+}, [
+  createElement('img', {
+    src: '/actividad-referencia.png',
+    alt: 'Ilustración de actividad académica',
+    className: 'activity-image',
+    key: 'image',
+  }),
+
+  createElement('div', {
+    className: 'activity-details',
+    key: 'details',
+  }, [
+    createElement('h2', { key: 'name' }, 'Torneo de Ajedrez'),
+
+    createElement('p', { key: 'date' },
+      'Fecha de inicio: 30/11/2016'
+    ),
+
+    createElement('span', {
+      className: 'activity-category',
+      key: 'category',
+    }, 'Deportivo'),
+
+    createElement('div', {
+      className: 'activity-platform',
+      key: 'platform',
+    }, 'Co-Working'),
+  ]),
+]),
           ]),
         ]),
       ]),

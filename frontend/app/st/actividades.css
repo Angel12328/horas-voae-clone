@@ -198,3 +198,64 @@
     grid-template-columns: 1fr;
   }
 }
+
+.activity-card {
+  width: 100%;
+  max-width: 265px;
+  background: #f4f4f4;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.activity-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.activity-details {
+  padding: 5px 0;
+}
+
+.activity-details h2 {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: #263b65;
+}
+
+.activity-details p {
+  font-size: 11px;
+  color: #888;
+  margin: 0 0 8px;
+}
+
+.activity-category,
+.activity-platform {
+  color: #39a9c9;
+  font-size: 11px;
+}
+
+.activity-platform {
+  text-align: right;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .activity-image {
+    height: 170px;
+  }
+
+  .student-sidebar nav {
+    gap: 8px;
+  }
+
+  .sidebar-link {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
