@@ -263,3 +263,503 @@ a {
     padding: 30px 20px;
   }
 }
+
+/* ======================================================================
+   Página de información de actividad — issue "Clonar Informacion de
+   Actividad". El header/sidebar (shell) vive en
+   components/layout/student-shell.css, compartido con /st.
+   ====================================================================== */
+
+.activity-page {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 24px 32px;
+  max-width: 1200px;
+  padding: 24px 32px;
+  font-family: Arial, sans-serif;
+  align-items: start;
+}
+
+.activity-main {
+  min-width: 0;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.activity-actions-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-inline {
+  width: auto;
+  min-height: 38px;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.btn-pill {
+  border-radius: 999px;
+  min-height: 34px;
+  padding: 0 18px;
+  font-size: 13px;
+}
+
+.btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+.btn-confirm {
+  background: #16a34a;
+  color: #fff;
+  margin-top: 0;
+}
+
+.btn-confirm:hover {
+  background: #15803d;
+}
+
+.btn-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: #dc2626;
+  color: #fff;
+  margin-top: 0;
+}
+
+.btn-cancel:hover {
+  background: #b91c1c;
+}
+
+.toast-success {
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  color: #14532d;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  margin: 8px 0 20px;
+}
+
+.activity-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.info-section {
+  margin-bottom: 26px;
+}
+
+.info-section h3 {
+  margin: 0 0 16px;
+  font-size: 26px;
+  font-weight: 700;
+  font-family: Arial, sans-serif;
+  color: var(--text-primary);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.info-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-field-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.info-field-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.activity-table th {
+  text-align: left;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 8px;
+}
+
+.activity-table td {
+  padding: 12px 8px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.cell-strong {
+  font-weight: 700;
+}
+
+.cell-accent {
+  color: #15803d;
+  font-weight: 700;
+}
+
+.activity-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cupos-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 18px;
+}
+
+.cupos-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.cupos-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.cupos-modalidad {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.cupos-count {
+  font-size: 18px;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.qr-carousel {
+  position: relative;
+  width: 100%;
+}
+
+.qr-box {
+  display: block;
+  width: 100%;
+  height: 190px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.15s;
+}
+
+.qr-box svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.qr-box:hover {
+  transform: scale(1.03);
+}
+
+.qr-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #475569;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.qr-nav:hover {
+  background: #334155;
+}
+
+.qr-nav-prev {
+  left: -12px;
+}
+
+.qr-nav-next {
+  right: -12px;
+}
+
+.qr-nav-next svg {
+  transform: scaleX(-1);
+}
+
+.aside-description h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.aside-description p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.not-found-box {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.not-found-box .btn-inline {
+  display: inline-flex;
+  margin-top: 16px;
+}
+
+/* ----------------------------------------------------------------------
+   Modales de inscripción / abandono
+   ---------------------------------------------------------------------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  padding: 32px 28px 28px;
+  text-align: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #dc2626;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-title {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.modal-question {
+  margin: 0 0 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-select-group {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.modal-select-label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.select-field {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #e9edf2;
+  padding: 0 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+  margin-top: 0;
+}
+
+/* ----------------------------------------------------------------------
+   Overlay de carga (3s al confirmar inscripción/abandono)
+   ---------------------------------------------------------------------- */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(100, 116, 139, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 200;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-label {
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ----------------------------------------------------------------------
+   Página /alert (concientización QR/phishing)
+   ---------------------------------------------------------------------- */
+
+.alert-card {
+  max-width: 460px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.alert-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.alert-icon {
+  color: #d97706;
+  width: 48px;
+  height: 48px;
+}
+
+.alert-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.alert-tips {
+  text-align: left;
+  margin: 0 0 24px;
+  padding-left: 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ----------------------------------------------------------------------
+   Responsivo: sidebar colapsa a barra horizontal, aside baja al final
+   ---------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .activity-page {
+    grid-template-columns: 1fr;
+    padding: 20px 16px;
+  }
+
+  .activity-actions-row {
+    justify-content: flex-start;
+  }
+
+  .activity-aside {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+  .cupos-card,
+  .qr-carousel {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .activity-table {
+    font-size: 13px;
+  }
+
+  .activity-aside {
+    flex-direction: column;
+  }
+}
