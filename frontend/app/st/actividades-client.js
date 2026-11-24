@@ -1,6 +1,7 @@
 'use client';
 
 import { createElement, useState } from 'react';
+import Link from 'next/link';
 import { StudentShell } from '../../components/layout/student-shell.js';
 
 const ACTIVIDAD = {
@@ -89,8 +90,9 @@ export default function ActividadesClient() {
             [
               mostrarActividad
                 ? createElement(
-                    'article',
+                    Link,
                     {
+                      href: '/st/show/00001TOAJ',
                       className: 'activity-card',
                       key: 'torneo-ajedrez',
                     },

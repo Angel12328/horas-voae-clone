@@ -70,6 +70,8 @@
   padding: 6px;
   overflow: hidden;
   transition: box-shadow 0.2s;
+  display: block;
+  cursor: pointer;
 }
 
 .activity-card:hover {

@@ -39,11 +39,13 @@ Aplicación completa: frontend **Next.js 16** (app router) + backend **Node.js/E
 - `app/page.js` es la pantalla de decisión "¿Eres empleado?".
 - **Empleado** (`/auth/admin`): el botón "Iniciar Sesión" redirige **inmediatamente** a `/error`
   sin capturar datos (solo `router.push('/error')`).
-- **Estudiante** (`/auth/login`): campos vacíos por defecto; envía `{cuenta, contrasenia}` en texto
-  plano a `POST /api/student-login` (base de datos, sin hash), guarda la cuenta en `localStorage` y
-  luego **muestra una alerta simulando la transición a /st** (deferido a otra issue; no navega).
-- La ruta `/st` es un panel/progress placeholder; solo se alcanza por URL directa. Es `async`,
-  lee `searchParams` con `await` y declara `export const instant = false` (requerido por Next 16).
+- **Estudiante** (`/auth/login`): campos vacíos por defecto; valida que no estén vacíos, envía
+  `{cuenta, contrasenia}` en texto plano a `POST /api/student-login` (base de datos, sin hash),
+  guarda la cuenta en `localStorage` y **redirige a `/st`**. Sin alertas/toasts de éxito; los
+  errores se muestran en el formulario.
+- La ruta `/st` muestra las actividades del estudiante; la tarjeta del Torneo de Ajedrez enlaza a
+  `/st/show/00001TOAJ`. Es `async`, lee `searchParams` con `await` y declara
+  `export const instant = false` (requerido por Next 16).
 - Diseño del login: una sola tarjeta blanca centrada sobre fondo `#F3F4F6`, inputs amarillo pálido
   `#FEFCE8`, botones azul marino `#1E3A8A`, responsivo desde móvil.
 

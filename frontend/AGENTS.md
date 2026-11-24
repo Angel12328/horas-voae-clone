@@ -18,7 +18,8 @@ Next.js 16 (app router) + React 19, cliente en `http://localhost:3000`. El API e
 - `app/auth/login/page.js` — login de **estudiante** (pantalla reconstruida desde `capturas/login.png`).
 - `app/auth/admin/page.js` — login de **empleado**: redirige a `/error` sin capturar ni enviar datos.
 - `app/error/page.js` — sección en mantenimiento.
-- `app/st/page.js` — panel de estudiante, solo alcanzable por URL directa.
+- `app/st/page.js` — panel de estudiante; también se alcanza al iniciar sesión como estudiante.
+- `app/st/actividades-client.js` — tarjeta del Torneo de Ajedrez enlazada a `/st/show/00001TOAJ`.
 - `components/auth-input.js` — `InputField` reutilizable (incluye el botón ojo para mostrar/ocultar contraseña).
 - `components/icons.js` — SVGs (sobre, candado, usuario, ojo, ojo tachado).
 - `app/globals.css` — estilos globales y tokens de diseño.
@@ -39,7 +40,7 @@ Next.js 16 (app router) + React 19, cliente en `http://localhost:3000`. El API e
 
 ## Flujos
 
-- **Estudiante** (`/auth/login`): envía `{ cuenta, contrasenia }` en **texto plano, sin hash**, a `POST http://localhost:4000/api/student-login`; guarda la cuenta en `localStorage` y muestra una alerta simulando la transición a `/st` (no navega). `/st` está pendiente de otra issue.
+- **Estudiante** (`/auth/login`): valida que ambos campos estén llenos; envía `{ cuenta, contrasenia }` en **texto plano, sin hash**, a `POST http://localhost:4000/api/student-login`; guarda la cuenta en `localStorage` y redirige a `/st` con `router.push('/st')`. No muestra alertas/toasts; los errores se despliegan en el formulario.
 - **Empleado** (`/auth/admin`): el botón "Iniciar Sesión" solo hace `router.push('/error')`. **No captura ni envía nada**. El endpoint `POST /login` del backend existe por compatibilidad, pero la UI no lo usa.
 - `/st` es `async` y lee `searchParams` con `await`, además de `export const instant = false` (requerido por Next 16).
 

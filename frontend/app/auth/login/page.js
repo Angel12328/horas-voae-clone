@@ -2,22 +2,27 @@
 
 import { createElement, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { InputField } from '../../../components/auth-input.js';
 import { EnvelopeIcon, LockIcon } from '../../../components/icons.js';
 
 export default function StudentLoginPage() {
+  const router = useRouter();
   const [cuenta, setCuenta] = useState('');
   const [contrasenia, setContrasenia] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
-  const [alerta, setAlerta] = useState(false);
-  const [alertaMsg, setAlertaMsg] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
     setError('');
-    setAlerta(false);
+
+    if (!cuenta.trim() || !contrasenia.trim()) {
+      setError('Ingresa tu número de cuenta y contraseña para continuar.');
+      return;
+    }
+
+    setSubmitting(true);
     try {
       const res = await fetch('http://localhost:4000/api/student-login', {
         method: 'POST',
@@ -30,8 +35,7 @@ export default function StudentLoginPage() {
         return;
       }
       localStorage.setItem('cuenta', cuenta);
-      setAlerta(true);
-      setAlertaMsg('Cuenta registrada con éxito. Hemos simulado el acceso a /st (sección estudiante pendiente de otra issue).');
+      router.push('/st');
     } catch (err) {
       setError('No se pudo conectar con el backend.');
     } finally {
@@ -78,12 +82,6 @@ export default function StudentLoginPage() {
           '¿Eres empleado (a)?, Ingresa aquí'
         ),
       ]),
-      (alerta) &&
-        createElement('div', { className: 'alerta', key: 'alerta' }, [
-          createElement('strong', { key: 'nota' }, 'Nota: '),
-          createElement('span', { key: 'mensaje' }, alertaMsg),
-          createElement('div', { key: 'st-note', style: { fontSize: '0.85em', color: '#713F12', textAlign: 'left' } }, 'La ruta /st queda pendiente para otra issue. Usa /auth/login para volver atrás.'),
-        ]),
     ]),
   ]);
 }
