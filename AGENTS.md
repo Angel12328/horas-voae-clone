@@ -40,9 +40,11 @@ Aplicación completa: frontend **Next.js 16** (app router) + backend **Node.js/E
 - **Empleado** (`/auth/admin`): el botón "Iniciar Sesión" redirige **inmediatamente** a `/error`
   sin capturar datos (solo `router.push('/error')`).
 - **Estudiante** (`/auth/login`): campos vacíos por defecto; valida que no estén vacíos, envía
-  `{cuenta, contrasenia}` en texto plano a `POST /api/student-login` (base de datos, sin hash),
-  guarda la cuenta en `localStorage` y **redirige a `/st`**. Sin alertas/toasts de éxito; los
-  errores se muestran en el formulario.
+  `{cuenta, contrasenia}` en texto plano a `POST ${NEXT_PUBLIC_API_URL}/api/student-login`
+  (base de datos, sin hash; fallback local `http://localhost:4000`), guarda la cuenta en
+  `localStorage` y **redirige a `/st`**. Sin alertas/toasts de éxito; los errores se muestran en
+  el formulario. En producción, Vercel debe definir `NEXT_PUBLIC_API_URL` apuntando al backend
+  de Render (sin `/` final; requiere redeploy porque es `NEXT_PUBLIC_`).
 - La ruta `/st` muestra las actividades del estudiante; la tarjeta del Torneo de Ajedrez enlaza a
   `/st/show/00001TOAJ`. Es `async`, lee `searchParams` con `await` y declara
   `export const instant = false` (requerido por Next 16).

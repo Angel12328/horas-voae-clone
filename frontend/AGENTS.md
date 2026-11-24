@@ -40,7 +40,8 @@ Next.js 16 (app router) + React 19, cliente en `http://localhost:3000`. El API e
 
 ## Flujos
 
-- **Estudiante** (`/auth/login`): valida que ambos campos estén llenos; envía `{ cuenta, contrasenia }` en **texto plano, sin hash**, a `POST http://localhost:4000/api/student-login`; guarda la cuenta en `localStorage` y redirige a `/st` con `router.push('/st')`. No muestra alertas/toasts; los errores se despliegan en el formulario.
+- **Estudiante** (`/auth/login`): valida que ambos campos estén llenos; envía `{ cuenta, contrasenia }` en **texto plano, sin hash**, a `POST ${NEXT_PUBLIC_API_URL}/api/student-login` (constante `API_URL` en el archivo, con fallback a `http://localhost:4000` para desarrollo); guarda la cuenta en `localStorage` y redirige a `/st` con `router.push('/st')`. No muestra alertas/toasts; los errores se despliegan en el formulario.
+- **Deploy**: en Vercel definir `NEXT_PUBLIC_API_URL` con la URL del Web Service de Render (sin `/` final). Es una variable `NEXT_PUBLIC_`, así que se inyecta en el bundle durante `next build`: cambiarla requiere **redeploy**.
 - **Empleado** (`/auth/admin`): el botón "Iniciar Sesión" solo hace `router.push('/error')`. **No captura ni envía nada**. El endpoint `POST /login` del backend existe por compatibilidad, pero la UI no lo usa.
 - `/st` es `async` y lee `searchParams` con `await`, además de `export const instant = false` (requerido por Next 16).
 

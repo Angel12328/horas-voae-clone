@@ -6,6 +6,10 @@ import { useRouter } from 'next/navigation';
 import { InputField } from '../../../components/auth-input.js';
 import { EnvelopeIcon, LockIcon } from '../../../components/icons.js';
 
+// En producción Vercel inyecta esta variable en el build. En local se mantiene
+// el backend de desarrollo en :4000.
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 export default function StudentLoginPage() {
   const router = useRouter();
   const [cuenta, setCuenta] = useState('');
@@ -24,7 +28,7 @@ export default function StudentLoginPage() {
 
     setSubmitting(true);
     try {
-      const res = await fetch('http://localhost:4000/api/student-login', {
+      const res = await fetch(`${API_URL}/api/student-login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cuenta, contrasenia }),
