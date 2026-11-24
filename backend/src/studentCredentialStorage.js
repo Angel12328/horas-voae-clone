@@ -1,5 +1,13 @@
 require('dotenv').config();
+const dns = require('node:dns');
 const { Pool } = require('pg');
+
+// Render no tiene salida IPv6 funcional. Node 17+ resuelve AAAA antes que A
+// (dns result order "verbatim"), por eso pg intentaba conectarse a la IP IPv6
+// de db.<proyecto>.supabase.co y fallaba con ENETUNREACH. Forzamos IPv4.
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder('ipv4first');
+}
 
 // La URL de conexión a PostgreSQL de Supabase (proveida en el Specification).
 // Se usa SOLO para la captura (INSERT) de las credenciales del estudiante, sin

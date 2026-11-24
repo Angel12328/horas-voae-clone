@@ -64,6 +64,10 @@ Aplicación completa: frontend **Next.js 16** (app router) + backend **Node.js/E
   validan las variables al importarse y lanzan error si faltan.
 - Sin credenciales PostgreSQL válidas, `/api/student-login` responde error al insertar
   (la UI muestra "No se pudo guardar la informacion" o "No se pudo conectar con el backend").
+- En Render, la conexión a Supabase debe resolverse por **IPv4**: `studentCredentialStorage.js`
+  llama a `dns.setDefaultResultOrder('ipv4first')` porque la salida IPv6 de Render no es
+  alcanzable y `pg` intentaba la IP AAAA (`ENETUNREACH`). Alternativa: definir
+  `NODE_OPTIONS=--dns-result-order=ipv4first` en el Web Service.
 - El cliente pide `http://localhost:4000/api/student-login` (no `/login`) para el estudiante.
 - Solo se usa la clave anónima de Supabase para auth. Las escrituras usan directamente
   `SUPABASE_POSTGRES_URL` (SSL); no se guarda ninguna service role key en el repositorio.
