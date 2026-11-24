@@ -11,7 +11,7 @@ export const ACTIVITIES = {
     ubicacion: 'Formulario en línea',
     modalidad: 'Virtual',
     asistencia: 'Simple | 1 asistencia',
-    ambito: '10 horas en Deportivo',
+    ambito: '05 horas en Deportivo',
     entidad: 'Departamento de Humanidades y artes C.U.R.C.',
     rolEntidad: 'Principal',
     cuposModalidad: 20,
