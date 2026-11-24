@@ -2,7 +2,7 @@
 
 import { createElement, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { LogoMarkIcon } from '../icons.js';
+import { LogoMarkIcon, HomeIcon, ActivitiesIcon } from '../icons.js';
 import './student-shell.css';
 
 /**
@@ -26,7 +26,11 @@ export function StudentShell({ children }) {
     createElement('header', { className: 'student-header', key: 'header' }, [
       createElement('div', { className: 'student-logo', key: 'logo' }, [
         createElement(LogoMarkIcon, { key: 'mark', className: 'student-logo-mark' }),
-        createElement('span', { key: 'text' }, 'Artículo 140'),
+        createElement('span', { className: 'student-logo-text', key: 'text' }, [
+          createElement('span', { className: 'student-logo-sup', key: 'sup' }, 'Artículo'),
+          createElement('span', { className: 'student-logo-main', key: 'main' }, '140'),
+          createElement('span', { className: 'student-logo-sub', key: 'sub' }, 'UNAH'),
+        ]),
       ]),
 
       createElement('div', { className: 'profile-container', key: 'profile' }, [
@@ -65,13 +69,19 @@ export function StudentShell({ children }) {
             href: '/st',
             className: 'sidebar-link active',
             key: 'inicio',
-          }, '⌂  Inicio'),
+          }, [
+            createElement(HomeIcon, { key: 'icon', className: 'sidebar-icon' }),
+            createElement('span', { key: 'label' }, 'Inicio'),
+          ]),
 
           createElement('a', {
             href: '/st',
             className: 'sidebar-link',
             key: 'activities',
-          }, '▣  Mis Actividades'),
+          }, [
+            createElement(ActivitiesIcon, { key: 'icon', className: 'sidebar-icon' }),
+            createElement('span', { key: 'label' }, 'Mis Actividades'),
+          ]),
         ]),
       ]),
 

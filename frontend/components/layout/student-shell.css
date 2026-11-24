@@ -25,14 +25,39 @@
 .student-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 21px;
-  font-weight: 800;
+  gap: 8px;
 }
 
 .student-logo-mark {
   flex-shrink: 0;
   color: #fff;
+}
+
+.student-logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.student-logo-sup {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.student-logo-main {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.student-logo-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  opacity: 0.85;
 }
 
 .profile-container {
@@ -109,11 +134,18 @@
 }
 
 .sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 15px 12px;
   border-radius: 6px;
   font-weight: 600;
   color: #344b76;
   text-decoration: none;
+}
+
+.sidebar-icon {
+  flex-shrink: 0;
 }
 
 .sidebar-link:hover,
@@ -153,6 +185,7 @@
 
   .sidebar-link {
     flex: 1;
+    justify-content: center;
     text-align: center;
     padding: 12px 5px;
     font-size: 13px;

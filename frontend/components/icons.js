@@ -57,11 +57,55 @@ export function EyeOffIcon({ className = 'w-5 h-5', style }) {
 
 // LogoMarkIcon — insignia circular del logo "Artículo 140" (topbar).
 export function LogoMarkIcon({ className = 'w-7 h-7', style }) {
-  return createElement('svg', { ...common, className, style: { width: '1.75rem', height: '1.75rem', ...style }, strokeWidth: 1.6 }, [
-    createElement('circle', { key: 'ring', cx: 12, cy: 12, r: 10 }),
-    createElement('path', { key: 'cap', d: 'M7 10.5 12 8l5 2.5-5 2.5-5-2.5z' }),
-    createElement('path', { key: 'strap', d: 'M9 11.7v2.3c0 .9 1.34 1.6 3 1.6s3-.7 3-1.6v-2.3' }),
-  ]);
+  // Rostro/sol con rayos, en un solo color (currentColor) — monocromo del
+  // logo real (sol + rostro estilizado con rayos alrededor).
+  const rays = [
+    { angle: 98, len: 9 },
+    { angle: 124, len: 13 },
+    { angle: 150, len: 8 },
+    { angle: 176, len: 14 },
+    { angle: 202, len: 8 },
+    { angle: 228, len: 13 },
+    { angle: 254, len: 9 },
+    { angle: 278, len: 11 },
+  ];
+
+  return createElement(
+    'svg',
+    {
+      viewBox: '0 0 32 32',
+      className,
+      style: { width: '1.75rem', height: '1.75rem', ...style },
+      fill: 'currentColor',
+      stroke: 'none',
+      'aria-hidden': true,
+    },
+    [
+      ...rays.map((ray, i) =>
+        createElement('rect', {
+          key: 'ray-' + i,
+          x: 25,
+          y: 14.5,
+          width: ray.len,
+          height: 3,
+          rx: 1.5,
+          transform: `rotate(${ray.angle} 16 16)`,
+        })
+      ),
+      createElement('circle', { key: 'face', cx: 16, cy: 16, r: 9 }),
+      // Rasgos de la carita, en el azul marino del header (quedan "grabados"
+      // sobre el círculo blanco, como el trazo oscuro sobre el amarillo del
+      // logo real).
+      createElement('path', {
+        key: 'brow-eye',
+        fill: '#263b65',
+        d: 'M12 13.3c1.6-1.6 5.6-1.6 7.2 0-1.6 1.9-5.6 1.9-7.2 0z',
+      }),
+      createElement('circle', { key: 'pupil', cx: 15.6, cy: 13.3, r: 1.1, fill: '#fff' }),
+      createElement('path', { key: 'nose', fill: 'none', stroke: '#263b65', strokeWidth: 1.2, strokeLinecap: 'round', d: 'M18.3 14.5l1 3-1.6.6' }),
+      createElement('path', { key: 'mouth', fill: 'none', stroke: '#263b65', strokeWidth: 1.2, strokeLinecap: 'round', d: 'M13 21.5h4l1.3-1.3' }),
+    ]
+  );
 }
 
 // ArrowLeftIcon — flecha "Atrás".
@@ -113,19 +157,21 @@ export function LogoutIcon({ className = 'w-4 h-4', style }) {
 // HomeIcon — inicio (sidebar).
 export function HomeIcon({ className = 'w-5 h-5', style }) {
   return createElement('svg', { ...common, className, style: { width: '1.25rem', height: '1.25rem', ...style } }, [
+    createElement('path', { key: 'flagpole', d: 'M5 10.5V4' }),
+    createElement('path', { key: 'flag', d: 'M5 4h4l-1.3 2L9 8H5' }),
     createElement('path', { key: 'roof', d: 'M3 10.5 12 3l9 7.5' }),
     createElement('path', { key: 'body', d: 'M5 9.5V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9.5' }),
     createElement('path', { key: 'door', d: 'M9 21v-6h6v6' }),
   ]);
 }
 
-// ActivitiesIcon — mis actividades (sidebar).
+// ActivitiesIcon — mis actividades (sidebar): insignia / estrella.
 export function ActivitiesIcon({ className = 'w-5 h-5', style }) {
-  return createElement('svg', { ...common, className, style: { width: '1.25rem', height: '1.25rem', ...style } }, [
-    createElement('rect', { key: 'board', x: 3, y: 4, width: 18, height: 17, rx: 2 }),
-    createElement('line', { key: 'tab1', x1: 8, y1: 2, x2: 8, y2: 6 }),
-    createElement('line', { key: 'tab2', x1: 16, y1: 2, x2: 16, y2: 6 }),
-    createElement('polyline', { key: 'check', points: '8 13 11 16 16 10' }),
+  return createElement('svg', { ...common, className, style: { width: '1.25rem', height: '1.25rem', ...style }, strokeLinejoin: 'round' }, [
+    createElement('path', {
+      key: 'star',
+      d: 'M12 3.5l2.47 5.18 5.53.83-4 4.12.94 5.87L12 16.9l-4.94 2.6.94-5.87-4-4.12 5.53-.83z',
+    }),
   ]);
 }
 
@@ -136,6 +182,24 @@ export function UsersIcon({ className = 'w-5 h-5', style }) {
     createElement('circle', { key: 'head1', cx: 9, cy: 7, r: 4 }),
     createElement('path', { key: 'body2', d: 'M22 21v-2a4 4 0 0 0-3-3.87' }),
     createElement('path', { key: 'head2', d: 'M16 3.13a4 4 0 0 1 0 7.75' }),
+  ]);
+}
+
+// FilterIcon — embudo de filtro ("Por Ámbito").
+export function FilterIcon({ className = 'w-4 h-4', style }) {
+  return createElement('svg', { ...common, className, style: { width: '1rem', height: '1rem', ...style } }, [
+    createElement('polygon', { key: 'funnel', points: '3 4 21 4 14 13 14 19 10 21 10 13 3 4' }),
+  ]);
+}
+
+// SortIcon — orden A-Z ("Orden A-Z").
+export function SortIcon({ className = 'w-4 h-4', style }) {
+  return createElement('svg', { ...common, className, style: { width: '1rem', height: '1rem', ...style } }, [
+    createElement('path', { key: 'line1', d: 'M4 6h7' }),
+    createElement('path', { key: 'line2', d: 'M4 12h5' }),
+    createElement('path', { key: 'line3', d: 'M4 18h3' }),
+    createElement('path', { key: 'arrowline', d: 'M17 4v16' }),
+    createElement('path', { key: 'arrow', d: 'M13 16l4 4 4-4' }),
   ]);
 }
 
