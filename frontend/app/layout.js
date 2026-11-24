@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import { createElement } from "react";
 import "./globals.css";
 
@@ -12,6 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-logo",
+  subsets: ["latin"],
+  weight: ["600", "700"],
+});
+
 export const metadata = {
   title: "Artículo 140 | Inicio de sesión",
   description: "Inicio de sesión | Acceso para estudiantes y empleados",
@@ -20,7 +26,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return createElement(
     "html",
-    { lang: "es", className: `${geistSans.variable} ${geistMono.variable}` },
+    { lang: "es", className: `${geistSans.variable} ${geistMono.variable} ${poppins.variable}` },
     createElement("body", {}, children)
   );
 }
