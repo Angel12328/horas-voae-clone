@@ -1,7 +1,7 @@
 :root {
   --bg-page: #F3F4F6;
   --bg-card: #FFFFFF;
-  --bg-input: #FEFCE8;
+  --bg-input: #E3E8F2;
   --text-primary: #1A1A1A;
   --text-secondary: #4A5568;
   --text-muted: #4A5568;
@@ -48,11 +48,11 @@ a {
 
 .card {
   width: 100%;
-  max-width: 420px;
+  max-width: 390px;
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
-  padding: 40px 30px;
+  padding: 28px 28px;
 }
 
 .branding {
@@ -62,15 +62,17 @@ a {
 
 .branding h1 {
   margin: 0;
-  font-size: 24px;
+  font-family: var(--font-logo), var(--font);
+  font-size: 28px;
   font-weight: 700;
   color: #1A1A1A;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.3px;
 }
 
 .branding .subtitle {
   margin-top: 6px;
-  font-size: 18px;
+  font-family: var(--font-logo), var(--font);
+  font-size: 20px;
   font-weight: 700;
   color: #1A1A1A;
 }
@@ -90,9 +92,9 @@ a {
 .input-label {
   display: block;
   margin-bottom: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #4A5568;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
   letter-spacing: 0.2px;
 }
 
@@ -102,7 +104,7 @@ a {
   align-items: center;
   background: var(--bg-input);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 0 44px 0 40px;
   min-height: 46px;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -168,6 +170,10 @@ a {
 
 .btn:active {
   transform: scale(0.98);
+}
+
+.card .btn {
+  border-radius: 8px;
 }
 
 .btn-primary {
@@ -253,7 +259,7 @@ a {
 /* En tablet/escritorio la tarjeta mantiene su ancho máximo y queda centrada. */
 @media (min-width: 768px) {
   .card {
-    max-width: 420px;
+    max-width: 390px;
     margin: 0 auto;
   }
 }
