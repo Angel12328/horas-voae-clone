@@ -2,11 +2,13 @@
 
 import { createElement, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeftIcon, ShareIcon, FingerprintIcon, ChessTrophyIllustration, UsersIcon } from '../icons.js';
+import { ArrowLeftIcon, ShareIcon, FingerprintIcon, ChessTrophyIllustration, UsersIcon, ClockIcon } from '../icons.js';
 import { ConfirmModal } from './confirm-modal.js';
 import { LoadingOverlay } from './loading-overlay.js';
 
 const LOADING_MS = 3000;
+const ENCUESTA_URL =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfwtb8ySnbjsbqbT1lBTvPvVzDoG03s540LGop-P2tx717Vfg/viewform?usp=publish-editor';
 
 /**
  * Página "Información de Actividad" (issue "Clonar Informacion de
@@ -118,6 +120,36 @@ export function ActivityInfo({ codigo, activity }) {
           [createElement('span', { key: 'label' }, copied ? 'Enlace copiado' : 'Compartir'), createElement(ShareIcon, { key: 'icon' })]
         ),
       ]),
+
+      enrolled &&
+        createElement('div', { className: 'encuesta-note', key: 'encuesta-note' }, [
+          createElement('div', { className: 'encuesta-note-icon', key: 'icon' }, [
+            createElement(ClockIcon, { key: 'icon' }),
+          ]),
+          createElement('div', { className: 'encuesta-note-text', key: 'text' }, [
+            createElement('strong', { key: 'title' }, 'Registro automático de horas'),
+            createElement(
+              'span',
+              { key: 'detail' },
+              'Al completar la encuesta, tus horas se registrarán automáticamente en la plataforma a partir del ' +
+                activity.fechaFin +
+                ', cuando se cierre la actividad.'
+            ),
+          ]),
+        ]),
+
+      enrolled &&
+        createElement(
+          'a',
+          {
+            key: 'encuesta-cta',
+            href: ENCUESTA_URL,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            className: 'btn btn-primary btn-encuesta-cta',
+          },
+          [createElement('span', { key: 'label' }, 'Comenzar Encuesta')]
+        ),
 
       createElement('div', { className: 'toast-success', key: 'toast' }, [
         createElement('strong', { key: 'carrera' }, carrera),

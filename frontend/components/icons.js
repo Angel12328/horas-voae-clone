@@ -185,6 +185,14 @@ export function UsersIcon({ className = 'w-5 h-5', style }) {
   ]);
 }
 
+// ClockIcon — reloj (aviso de registro automático de horas).
+export function ClockIcon({ className = 'w-5 h-5', style }) {
+  return createElement('svg', { ...common, className, style: { width: '1.25rem', height: '1.25rem', ...style } }, [
+    createElement('circle', { key: 'face', cx: 12, cy: 12, r: 9 }),
+    createElement('path', { key: 'hands', d: 'M12 7v5l3.5 2' }),
+  ]);
+}
+
 // FilterIcon — embudo de filtro ("Por Ámbito").
 export function FilterIcon({ className = 'w-4 h-4', style }) {
   return createElement('svg', { ...common, className, style: { width: '1rem', height: '1rem', ...style } }, [
